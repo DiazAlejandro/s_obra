@@ -6,4 +6,5 @@
 
     $conexion = mysqli_connect($host,$user,$pass,$db)
                 or die('Error en la conexión servidor');
+
 ?>

@@ -1,7 +1,7 @@
 <?php
     include 'conexion.php';
 
-    $directorio = "../archivos/planos/";
+    $directorio = "../archivos/pago/";
     $nombreDoc = trim($_FILES["file"]["name"]);
     $nombreDoc = str_replace(" ","_",$nombreDoc);
     $archivo = $directorio.basename($nombreDoc);
@@ -15,10 +15,15 @@
     }else{
         if ($tipoArchivo == "pdf"){
             if(move_uploaded_file($_FILES["file"]["tmp_name"],$archivo)){
-                $query = "INSERT INTO plano (descripcion, idobra, documento_plano)
-                          VALUES ('".$_POST["descripcion"]."',
-                                  '".$_POST["idobra"]."',
-                                  '$archivo')";
+                //echo "El archivo se subió correctamente";
+                $query = "INSERT INTO pago (concepto, monto, fecha, documento_pago, idcliente, idcotizacion)
+                          VALUES ('".$_POST["concepto"]."',
+                                  '".$_POST["monto"]."',
+                                  '".$_POST["fecha"]."',
+
+                                  '$archivo',
+                                  '".$_POST["cliente"]."',
+                                  '".$_POST["cotizacion"]."')";
                                   $resultado = mysqli_query($conexion,$query);
                                   if ($resultado == 1){
                                       $messaget = "REGISTRO AGREGADO CORRECTAMENTE";
@@ -44,7 +49,7 @@
                 mysqli_close($conexion);
             }
         }else{
-            $messagec = "ERROR AL SUBIR EL ARCHIVO";
+            $messagec = "SOLO SE ADMITEN FORMATOS EN PDF";
                 echo "<script type='text/javascript'>
                     alert('$messagec');
                     window.location.href = '../registro_pago.php';

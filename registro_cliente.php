@@ -10,7 +10,10 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php
+        date_default_timezone_set('America/Mexico_City');
+        $fecha_actual = date ("Y-m-d H:i:s");
+    ?>
 
     <!--FORMULARIO-->
     <form action="/s_obra/php/cliente.php" method="POST" enctype="multipart/form-data">
@@ -25,7 +28,7 @@
 
         <p>Telefono:<input type="text" name="telefono" /></p>
         <p>Correo:<input type="text" name="correo" /></p>
-        <p>Fecha_Registro:<input type="date" name="fecha" /></p>
+        <p>Fecha_Registro:<input type="datetime" name="fecha" readonly value="<?= $fecha_actual?>"/></p>
 
         <h2>Dirección</h2>
         <p>Calle:<input type="text" name="calle" /></p>

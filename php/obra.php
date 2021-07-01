@@ -40,14 +40,15 @@
             $messaget = "REGISTRO AGREGADO CORRECTAMENTE";
             echo "<script type='text/javascript'>
                     alert('$messaget');
-                    window.location.href = '../registro_proveedor.php';
+                    window.location.href = '../registro_obra.php';
                 </script>";
+                mysqli_close($conexion);
         }else{
             
             $messagec = "NO SE AGREGÓ EL PROVEEDOR";
             echo "<script type='text/javascript'>
                     alert('$messagec');
-                    window.location.href = '../registro_proveedor.php';
+                    window.location.href = '../registro_obra.php';
                 </script>";
         }
 
@@ -55,7 +56,7 @@
         $messagew = "NO SE GUARDO NINGÚN DATO";
         echo "<script type='text/javascript'>
                     alert('$messagew');
-                    window.location.href = '../registro_proveedor.php';
+                    window.location.href = '../registro_obra.php';
              </script>";
 
     }
