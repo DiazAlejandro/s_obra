@@ -11,9 +11,13 @@
     <title>Registro Obra</title>
 </head>
 <body>
+    <?php   
+        date_default_timezone_set('America/Mexico_City');
+        $fecha_actual = date ("Y-m-d H:i:s");
+    ?>
     <form method="POST" enctype="multipart/form-data" action="php/obra.php">
                 <h2>Registrar Obra</h2>
-            Nombre de la Obra: <input name="nombre_obra" type="text" size="45" maxlength="45"> <br>
+            Nombre de la Obra: <input name="nombre_obra" type="text" size="45" readonly value="<?= $fecha_actual?>"/><br>
             Fecha de registro: <input name="fecha" type="date" size="70" maxlength="70"> <br>
             <!--Avance de la Obra: <input name="avance" type="number" size="70" maxlength="70" > <br>-->
             Tipo de Obra:      <input name="tipo" type="text" size="70" maxlength="70"> <br>
