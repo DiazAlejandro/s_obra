@@ -27,7 +27,7 @@
                                   '".$_POST["costo"]."',
                                   '$archivo',
                                   '".$_POST["pago_acumulado"]."',
-                                  '".$_POST["obra"]."')";
+                                  '2')";
                 $resultado = mysqli_query($conexion,$query);
 
                 if ($resultado == 1){
