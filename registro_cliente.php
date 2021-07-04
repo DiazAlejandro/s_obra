@@ -1,5 +1,16 @@
 <?php
     include 'php/conexion.php';
+    session_start();
+    if (isset($_SESSION['username'])){
+        
+    }else{
+        $messaget = "❌ NO TIENE ACCESO A LA PÁGINA ❌";
+        echo "<script type='text/javascript'>
+            alert('$messaget');
+            window.location.href = 'index.php';
+            </script>";
+
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,19 +65,29 @@
             <td>Fecha_registro</td>
         </tr>
         <?php
-            $consultaCliente= "SELECT * FROM cliente";
+            $consultaCliente= "SELECT 
+                    cliente.idcliente,
+                    CONCAT_WS(' ',cliente.nombre, cliente.apellidos) AS nombre,
+                    cliente.sexo, 
+                    cliente.telefono, 
+                    cliente.correo_e,
+                    cliente.fecha_registro, 
+                    CONCAT_WS (' ',data_entities.calle, data_entities.colonia, 
+                                data_entities.municipio, data_entities.estado) as direccion
+                FROM cliente
+                    INNER JOIN data_entities
+                        ON cliente.iddata_entities = data_entities.iddata_entities";
             $result = mysqli_query($conexion,$consultaCliente);
             while ($mostrar = mysqli_fetch_array($result)){
             ?>
              <tr>
                 <td><?php echo $mostrar['idcliente'] ?></td>
                 <td><?php echo $mostrar['nombre'] ?></td>
-                <td><?php echo $mostrar['apellidos'] ?></td>
                 <td><?php echo $mostrar['sexo'] ?></td>
                 <td><?php echo $mostrar['telefono'] ?></td>
                 <td><?php echo $mostrar['correo_e'] ?></td>
                 <td><?php echo $mostrar['fecha_registro'] ?></td>
-
+                <td><?php echo $mostrar['direccion'] ?></td>
             </tr>
         <?php
             }

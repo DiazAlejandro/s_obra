@@ -1,5 +1,16 @@
 <?php
     include 'php/conexion.php';
+    session_start();
+    if (isset($_SESSION['username'])){
+        
+    }else{
+        $messaget = "❌ NO TIENE ACCESO A LA PÁGINA ❌";
+        echo "<script type='text/javascript'>
+            alert('$messaget');
+            window.location.href = 'index.php';
+            </script>";
+
+    }
 ?>
 
 <!DOCTYPE html>
